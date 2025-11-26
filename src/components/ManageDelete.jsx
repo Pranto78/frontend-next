@@ -41,7 +41,11 @@ export default function ManageDelete({ courseId }) {
     <button
       onClick={handleDelete}
       disabled={loading}
-      className="text-red-600 underline disabled:opacity-50"
+      className={`px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-r from-red-500 to-red-700 ${
+        loading
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:from-red-600 hover:to-red-800"
+      } transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105`}
     >
       {loading ? "Deleting..." : "Delete"}
     </button>

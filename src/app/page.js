@@ -13,33 +13,34 @@ export default function Home() {
     {
       id: 2,
       title: "Python for Beginners",
-      image: "https://picsum.photos/seed/python/600/300",
+      image:
+        "https://i.ibb.co.com/LhnSfgfK/1-3-Ic-LSFu-T8-PQg4c-UBa-RXH1-A.png",
       description:
         "Get started with Python programming and automation projects.",
     },
     {
       id: 3,
       title: "C# Fundamentals",
-      image: "https://picsum.photos/seed/csharp/600/300",
+      image: "https://i.ibb.co.com/LX0Ftd3B/1-9l-Iy-J63sk3-C-o-Jixp-Nh-gg.jpg",
       description: "Understand object-oriented programming with C# and .NET.",
     },
     {
       id: 4,
       title: "C++ Programming",
-      image: "https://picsum.photos/seed/cpp/600/300",
+      image: "https://i.ibb.co.com/HTcKc15x/images.png",
       description: "Master C++ basics, data structures, and algorithms.",
     },
     {
       id: 5,
       title: "JavaScript Advanced",
-      image: "https://picsum.photos/seed/js/600/300",
+      image: "https://i.ibb.co.com/3mfLBrqY/hiu.png",
       description:
         "Deep dive into JS, ES6+, DOM manipulation, and async programming.",
     },
     {
       id: 6,
       title: "Data Science with Python",
-      image: "https://picsum.photos/seed/datasci/600/300",
+      image: "https://i.ibb.co.com/4GfhMb5/What-is-data-science-2.jpg",
       description:
         "Learn pandas, NumPy, matplotlib, and machine learning basics.",
     },
@@ -112,7 +113,7 @@ export default function Home() {
             >
               <img
                 src={course.image}
-                className="rounded mb-3"
+                className="rounded-xl mb-3 h-40 w-full object-cover"
                 alt={course.title}
               />
               <h3 className="font-semibold">{course.title}</h3>
