@@ -1,4 +1,3 @@
-// src/app/api/auth/[...nextauth]/route.js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -7,11 +6,16 @@ const backend = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
 
 export const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
+        email: {},
+        password: {},
       },
       async authorize(credentials) {
         try {
@@ -23,30 +27,28 @@ export const authOptions = {
               password: credentials.password,
             }),
           });
+
           if (!res.ok) return null;
+
           const data = await res.json();
-          // return user object and token
           return {
             id: data.user.id,
             name: data.user.fullName,
             email: data.user.email,
             token: data.token,
           };
-        } catch (err) {
+        } catch {
           return null;
         }
       },
     }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
   ],
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.accessToken = user.token || token.accessToken;
-        token.id = user.id || token.id;
+        token.id = user.id;
+        token.accessToken = user.token;
       }
       return token;
     },
@@ -56,6 +58,11 @@ export const authOptions = {
       return session;
     },
   },
+
+  pages: {
+    signIn: "/login",
+  },
+
   secret: process.env.NEXTAUTH_SECRET,
   session: { strategy: "jwt" },
 };

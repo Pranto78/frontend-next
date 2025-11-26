@@ -2,9 +2,7 @@
 import ProtectedServerRedirect from "../../components/ProtectedServerRedirect";
 import dynamic from "next/dynamic";
 
-const AddCourseForm = dynamic(() => import("../../components/AddCourseForm"), {
-  ssr: false,
-});
+const AddCourseForm = dynamic(() => import("../../components/AddCourseForm"));
 
 export default async function AddCoursePage() {
   await ProtectedServerRedirect();
